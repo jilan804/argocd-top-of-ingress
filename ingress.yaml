@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: argocd.ysquaretechnology.com
+    http:
+      paths:
+      - backend:
+          serviceName: argocd-server
+          servicePort: https
+        path: /
+  tls:
+  - hosts:
+    - argocd.ysquaretechnology.com 
+    secretName: tls-secret
